@@ -1,5 +1,6 @@
 # https://community.home-assistant.io/t/splitting-yaml-files-access-to-secrets-in-esphome-subfolders/158273/2
 # https://community.home-assistant.io/t/advice-creating-an-esphome-custom-component-for-alphanumeric-led-display/175848
+# https://github.com/ssieb/custom_components
 
 # docker run --rm -v "${PWD}:/config" -it esphome/esphome weightscale.yaml run
 
@@ -7,14 +8,14 @@ esphome:
   name: weightscale
   platform: ESP8266
   board: d1_mini
-  libraries: "2012"
+  #libraries: "2012"
 
 # Not needed
 #<<: !include secrets.yaml
 
 wifi:
   # Old address
-  #use_address: !secret wifi_manual_addr
+  use_address: !secret wifi_manual_addr
 
   ssid: !secret wifi_ssid
   password: !secret wifi_password
@@ -31,7 +32,7 @@ web_server:
 
 # Enable logging
 logger:
-  level: DEBUG
+  level: INFO
 
 mqtt:
   broker: !secret broker_addr
@@ -69,4 +70,4 @@ display:
     scroll_dwell: 2s
     scroll_delay: 3
     lambda: |-
-      it.print("1234");
+      it.print("0000");
